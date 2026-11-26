@@ -1,0 +1,10 @@
+# GUESS: match the versions free Colab ships when you start (run `pip freeze` there and update).
+tensorflow==2.17.1
+numpy==1.26.4
+pandas==2.2.2
+scikit-learn==1.5.2
+matplotlib==3.9.2
+pillow==10.4.0
+pyyaml==6.0.2
+joblib==1.4.2
+kagglehub==0.3.4

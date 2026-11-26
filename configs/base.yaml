@@ -1,0 +1,39 @@
+# Reference configuration for HAM10000 (image track).
+# Every experiment copies this file and changes ONE thing (spec 3.5).
+# Lines marked GUESS are starting values to confirm with experiments.
+
+run:
+  author: "TODO-your-github-login"
+  seed: 42
+  notes: "reference configuration"
+
+data:
+  root: data/raw/ham10000          # where data/download.py puts the files
+  metadata_file: HAM10000_metadata.csv
+  # Fixed class order: index 0..6 in every model, plot and confusion matrix.
+  classes: [akiec, bcc, bkl, df, mel, nv, vasc]
+  group_col: lesion_id             # images of the same lesion stay in one split (no leakage)
+  split: {train: 0.70, val: 0.15, test: 0.15}
+  image_size: 128                  # GUESS: 600x450 originals resized to 128x128 to fit Colab time
+  baseline_image_size: 32          # logistic-regression baseline works on 32x32x3 = 3072 pixels
+  class_weights: true
+  augment:                         # applied to the TRAINING set only
+    flip: true                     # lesions have no "up" or "left", so flips keep the label
+    rotation: 0.25                 # GUESS: fraction of a full turn (0.25 = up to 90 degrees)
+    zoom: 0.1                      # GUESS
+    contrast: 0.1                  # GUESS: simulates different dermatoscope lighting
+
+model:
+  name: custom_cnn                 # majority | logreg | custom_cnn | vgg16_frozen | vgg16_finetune
+
+train:
+  optimizer: adam                  # sgd | sgd_momentum | adam
+  learning_rate: 0.001
+  momentum: 0.9
+  batch_size: 32
+  epochs: 50
+  early_stopping_patience: 8
+
+eval:
+  primary_metric: balanced_accuracy  # = macro-averaged recall, the official ISIC 2018 metric
+  watch_class: mel                   # we also report melanoma recall on its own
