@@ -4,7 +4,7 @@
 Given a dermatoscopic photo of a skin lesion, predict which of 7 diagnoses it is
 (akiec, bcc, bkl, df, mel, nv, vasc) with a confidence. Missing a melanoma is the most
 costly error, so the primary metric is **balanced accuracy** (mean per-class recall) and we
-also report **melanoma recall**. Course project, not a diagnostic tool.
+also report **melanoma recall**. 
 
 Dataset: HAM10000, Tschandl et al. (2018), *Scientific Data* 5:180161, CC BY-NC 4.0. See `data/README.md`.
 
