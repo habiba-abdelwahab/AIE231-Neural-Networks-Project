@@ -1,0 +1,6 @@
+# Optimizer study (owner: Experimentation Engineer): Model A with plain SGD.
+# Only the optimizer (and its usual learning rate) changes vs model_a_cnn.yaml (Adam, 0.001).
+inherit: model_a_cnn.yaml
+train:
+  optimizer: sgd
+  learning_rate: 0.01   # GUESS: SGD needs a larger step than Adam; say so in the report
