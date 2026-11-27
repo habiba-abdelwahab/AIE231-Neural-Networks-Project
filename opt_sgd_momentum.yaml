@@ -1,0 +1,6 @@
+# Optimizer study (owner: Experimentation Engineer): Model A with SGD + momentum 0.9.
+inherit: model_a_cnn.yaml
+train:
+  optimizer: sgd_momentum
+  learning_rate: 0.01
+  momentum: 0.9
